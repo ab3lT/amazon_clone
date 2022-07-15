@@ -23,20 +23,7 @@ class MyApp extends StatelessWidget {
             elevation: 0, iconTheme: IconThemeData(color: Colors.black)),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Scaffold(
-          appBar: AppBar(title: Center(child: Text('Hello'))),
-          body: Column(
-            children: [
-              Center(child: Text("Flutter Demo Home page")),
-              Builder(builder: (context) {
-                return ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AuthScreen.routeName);
-                    },
-                    child: Text("Click"));
-              })
-            ],
-          )),
+      home: AuthScreen(),
     );
   }
 }
