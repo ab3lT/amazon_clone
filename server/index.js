@@ -1,21 +1,28 @@
-console.log("hello, World");
-
+// import form packages
 const express = require('express');
+const mongoose = require('mongoose');
+//Imports From Other Files
+const authRouter = require('./routes/auth')
 
+//INIT
 const PORT = 3000;
 
 const app = express();
+const DB = "mongodb+srv://abel:abel1224@cluster0.forfvkc.mongodb.net/?retryWrites=true&w=majority"
 
+// middleware
+// CLIENT -> MIDDLEWARE -> SERVER -> CLIENT
+app.use(express.json());
+app.use(authRouter);
 
-// CREATING AN API
-// GET, PUT, POST, DELETE, UPDATE -> CRUD
-// http://<youripaddress>/Hello-world
-app.get('/', (req, res) => {
-    res.json({Name: "Abel"});
-})
-app.get('/hello-world', (req, res) => {
-    res.json({hi: "Hello Wold"});
-})
+// Connections
+mongoose
+.connect(DB).then(() => {
+    console.log("Connection Successful");
+}).catch((e) => {
+    console.log(e);
+});
+
 app.listen(PORT,  () => {
     console.log(`Connected at port ${PORT}`);
 })
