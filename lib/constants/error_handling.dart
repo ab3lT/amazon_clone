@@ -5,4 +5,11 @@ void httpErrorHandle({
   required http.Response response,
   required BuildContext covariant,
   required VoidCallback onSuccess,
-}) {}
+}) {
+  switch (response.statusCode) {
+    case 200:
+      onSuccess();
+      break;
+    case 400:
+  }
+}
